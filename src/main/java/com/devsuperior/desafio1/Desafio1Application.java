@@ -1,8 +1,5 @@
 package com.devsuperior.desafio1;
 
-import java.util.Locale;
-import java.util.Scanner;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,16 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.devsuperior.desafio1.entities.Order;
 import com.devsuperior.desafio1.services.OrderService;
-import com.devsuperior.desafio1.services.ShippingService;
 
 @SpringBootApplication
 public class Desafio1Application  implements CommandLineRunner{
 	
 	@Autowired
 	private OrderService orderService;
-	
-	@Autowired
-	private ShippingService shippingService;
+
 	
 
 	public static void main(String[] args) {
@@ -29,32 +23,23 @@ public class Desafio1Application  implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		
-			Locale.setDefault(Locale.US);
-	        Scanner scanner  = new Scanner(System.in);
 
-	        System.out.print("INFORME O CODIGO DO PRODUTO: ");
-	        int code = scanner.nextInt();
+	        Order order1  = new Order(1034, 150.0, 20.0);   
+	        System.out.println("Pedido código: " + order1.getCode());
+	        System.out.println("Valor Total: " + orderService.total(order1));
 	        
+	        System.out.println("__________________________________");	        
 	        
-	        System.out.print("INFORME O VALOR DO PRODUTO: ");
-	        double basic = scanner.nextDouble();
+	        Order order2  = new Order(2282, 800.0, 10.0);   
+	        System.out.println("Pedido código: " + order2.getCode());
+	        System.out.println("Valor Total: " + orderService.total(order2));
 	        
+	        System.out.println("__________________________________");	
 	        
-	        System.out.print("INFORME O DESCONTO DO PRODUTO: ");
-	        double discount = scanner.nextDouble();
-
-	        Order order  = new Order(code,basic,discount);
-
-	        orderService.total(order);
-	        shippingService.shipment(order);
-	        
-	        System.out.println("Pedido código: " + order.getCode());
-	        
-	        
-	        System.out.println("Valor Total: " + order.getBasic());
-	        
-	        scanner.close();
+	        Order order3  = new Order(1309, 95.90, 0.0);   
+	        System.out.println("Pedido código: " + order3.getCode());
+	        System.out.println("Valor Total: " + orderService.total(order3));
+	
 
 	}
 

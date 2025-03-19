@@ -6,6 +6,7 @@ import com.devsuperior.desafio1.entities.Order;
 
 @Service
 public class ShippingService {
+	
 
     public double shipment (Order order){
    
